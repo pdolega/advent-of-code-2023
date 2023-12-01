@@ -1,4 +1,4 @@
-defmodule DayXX do
+defmodule Day02 do
   def calculate1(input) do
     lines = parse_input(input)
     :ok
