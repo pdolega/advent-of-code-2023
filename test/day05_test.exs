@@ -1,10 +1,10 @@
-import DayXX
+import Day05
 
-defmodule DayXXTest do
+defmodule Day05Test do
   use ExUnit.Case
   @moduletag timeout: :infinity
 
-  doctest DayXX
+  doctest Day05
 
   setup_all do
     test_input =  """

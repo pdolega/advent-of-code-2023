@@ -1,4 +1,4 @@
-defmodule DayXX do
+defmodule Day05 do
   def part1(input) do
     lines = parse_input(input)
     :ok
