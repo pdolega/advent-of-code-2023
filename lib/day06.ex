@@ -3,9 +3,7 @@ defmodule Day06 do
     [times, distance] = String.split(input, "\n")
     races = Enum.zip(parse_num_list(times), parse_num_list(distance))
 
-    Enum.map(races, fn {total_time, max_distance} ->
-      count_win_variants(total_time, max_distance)
-    end)
+    Enum.map(races, fn {total_time, max_distance} -> count_win_variants(total_time, max_distance) end)
     |> Enum.reduce(1, &(&1 * &2))
   end
 
@@ -17,13 +15,11 @@ defmodule Day06 do
     count_win_variants(total_time, max_distance)
   end
 
+  # calculation via quadratic equation
   defp count_win_variants(total_time, max_distance) do
-    Enum.filter(0..total_time, fn time_charging ->
-      time_driving = total_time - time_charging
-      distance_driven = time_driving * time_charging
-      distance_driven > max_distance
-    end)
-    |> Enum.count()
+    min = Float.ceil((total_time - :math.sqrt(total_time * total_time - 4 * max_distance)) / 2 + 0.00001)
+    max = Float.floor((total_time + :math.sqrt(total_time * total_time - 4 * max_distance)) / 2 - 0.00001)
+    round(max - min + 1)
   end
 
   defp parse_num_list(line) do

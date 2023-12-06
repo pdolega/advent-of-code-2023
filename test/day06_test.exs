@@ -30,7 +30,6 @@ defmodule Day06Test do
     assert part2(test_input) == 71_503
   end
 
-  @tag :skip
   test "part2 - real input", %{real_input: real_input} do
     assert part2(real_input) == 35_865_985
   end
