@@ -2,7 +2,6 @@ import Day09
 
 defmodule Day09Test do
   use ExUnit.Case
-  @moduletag timeout: :infinity
 
   doctest Day09
 
@@ -22,15 +21,13 @@ defmodule Day09Test do
     assert part1(test_input) == 114
   end
 
-
   test "part1 - real input", %{real_input: real_input} do
-    assert part1(real_input) == 1842168671
+    assert part1(real_input) == 1_842_168_671
   end
 
   test "part2 - test input", %{test_input: test_input} do
     assert part2(test_input) == 2
   end
-
 
   test "part2 - real input", %{real_input: real_input} do
     assert part2(real_input) == 903

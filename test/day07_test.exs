@@ -2,7 +2,6 @@ import Day07
 
 defmodule Day07Test do
   use ExUnit.Case
-  @moduletag timeout: :infinity
 
   doctest Day07
 

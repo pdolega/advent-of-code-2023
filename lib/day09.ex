@@ -1,57 +1,23 @@
 defmodule Day09 do
   def part1(input) do
-    lines = parse_input(input)
-
-    Enum.map(lines, fn line ->
-
-      diffs = Stream.unfold(line, fn line ->
-        diffs = Enum.chunk_every(line, 2, 1, :discard)
-        |> Enum.map(fn [a, b] ->
-          b - a
-        end)
-
-        {diffs, diffs}
-      end)
-      |> Enum.take_while(fn diffs ->
-        not Enum.all?(diffs, &(&1 == 0))
-      end)
-
-
-      diff = Enum.reverse(diffs)
+    parse_input(input)
+    |> Enum.map(fn line ->
+      diff = calculate_diff_stages(line)
       |> Enum.map(fn diff_stage ->
-        Enum.reverse(diff_stage)
-        |> hd()
+        List.last(diff_stage)
       end)
       |> Enum.reduce(0, &(&1 + &2))
 
       [last | _] = Enum.reverse(line)
       last + diff
-
-
     end)
     |> Enum.sum()
-
   end
 
   def part2(input) do
-    lines = parse_input(input)
-
-    Enum.map(lines, fn line ->
-
-      diffs = Stream.unfold(line, fn line ->
-        diffs = Enum.chunk_every(line, 2, 1, :discard)
-        |> Enum.map(fn [a, b] ->
-          b - a
-        end)
-
-        {diffs, diffs}
-      end)
-      |> Enum.take_while(fn diffs ->
-        not Enum.all?(diffs, &(&1 == 0))
-      end)
-
-
-      diff = Enum.reverse(diffs)
+    parse_input(input)
+    |> Enum.map(fn line ->
+      diff = calculate_diff_stages(line)
       |> Enum.map(fn diff_stage ->
         hd(diff_stage)
       end)
@@ -59,9 +25,20 @@ defmodule Day09 do
 
       [first | _] = line
       first - diff
-
     end)
     |> Enum.sum()
+  end
+
+  defp calculate_diff_stages(line) do
+    Stream.unfold(line, fn line ->
+      diffs = Enum.chunk_every(line, 2, 1, :discard)
+      |> Enum.map(fn [a, b] -> b - a end)
+      {diffs, diffs}
+    end)
+    |> Enum.take_while(fn diffs ->
+      not Enum.all?(diffs, &(&1 == 0))
+    end)
+    |> Enum.reverse()
   end
 
   defp parse_input(input) do
