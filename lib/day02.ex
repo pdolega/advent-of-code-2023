@@ -30,7 +30,7 @@ defmodule Day02 do
         end)
       end)
       |> Map.values()
-      |> Enum.reduce(fn num, result -> num * result end)
+      |> Enum.product()
     end)
     |> Enum.sum()
   end

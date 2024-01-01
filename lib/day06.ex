@@ -4,7 +4,7 @@ defmodule Day06 do
     races = Enum.zip(parse_num_list(times), parse_num_list(distance))
 
     Enum.map(races, fn {total_time, max_distance} -> count_win_variants(total_time, max_distance) end)
-    |> Enum.reduce(1, &(&1 * &2))
+    |> Enum.product()
   end
 
   def part2(input) do

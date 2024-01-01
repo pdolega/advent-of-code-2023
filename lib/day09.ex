@@ -6,7 +6,7 @@ defmodule Day09 do
       |> Enum.map(fn diff_stage ->
         List.last(diff_stage)
       end)
-      |> Enum.reduce(0, &(&1 + &2))
+      |> Enum.sum()
 
       [last | _] = Enum.reverse(line)
       last + diff

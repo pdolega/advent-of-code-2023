@@ -96,13 +96,9 @@ defmodule Day07 do
     end
   end
 
-  def part1(input) do
-    sum_bets(input, RegularComparator)
-  end
+  def part1(input), do: sum_bets(input, RegularComparator)
 
-  def part2(input) do
-    sum_bets(input, JokerComparator)
-  end
+  def part2(input), do: sum_bets(input, JokerComparator)
 
   def sum_bets(input, comparator_mod) do
     parse_input(input)
